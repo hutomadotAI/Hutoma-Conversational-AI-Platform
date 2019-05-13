@@ -1,0 +1,105 @@
+version: '3'
+
+volumes:
+  api_store:
+  api-svc_logs_store:
+  boticon_store:
+  log_fluent_store:
+  emb_store:
+
+services:
+
+  api-db:
+    image: $IMAGE_API_DB
+    volumes:
+    - api_store:/var/lib/mysql
+    ports:
+    - "13306:3306"
+
+  log-fluent:
+    image: $IMAGE_LOG_FLUENT
+    volumes:
+    - log_fluent_store:/logs
+    - "./fluent.conf:/fluentd/etc/fluent.conf"
+
+  api-ctrl:
+    image: $IMAGE_API_CTRL
+    depends_on:
+    - api-db
+    environment:
+    - API_CONNECTION_STRING=jdbc:mysql://api-db:3306/hutoma?user=hutoma_caller&password=$API_DB_HUTOMA_CALLER_PASSWORD&zeroDateTimeBehavior=convertToNull
+    - API_LOGGING_FLUENT_HOST=log-fluent
+    - API_LOGGING_FLUENT_PORT=24224
+    - API_RNN_ENABLED=false
+
+  api-svc:
+    image: $IMAGE_API_SVC
+    depends_on:
+    - api-db
+    volumes:
+    - api-svc_logs_store:/usr/local/tomcat/logs
+    - boticon_store:/boticon
+    environment:
+    - API_ENCODING_KEY="$API_ENCODING_KEY"
+    - API_CONNECTION_STRING=jdbc:mysql://api-db:3306/hutoma?user=hutoma_caller&password=$API_DB_HUTOMA_CALLER_PASSWORD&zeroDateTimeBehavior=convertToNull
+    - API_LOGGING_FLUENT_HOST=log-fluent
+    - API_LOGGING_FLUENT_PORT=24224
+    - API_ENTITY_RECOGNIZER_URL=http://api-entity:9095/ner
+    - API_FIND_ENTITY_URL=http://api-entity:9095/findentities
+    - API_FB_APP_ID=$FACEBOOK_APP_ID
+    - API_FB_APP_SECRET=$FACEBOOK_APP_SECRET
+    - API_ANALYTICS_ES_URLS=http://log-es:9200
+    - API_RATELIMIT_CHAT_BURST=20.0
+    - API_RATELIMIT_CHAT_FREQUENCY=0.1
+    - API_CONTROLLER_URL=http://api-ctrl:8080/v1
+    - API_RNN_ENABLED=false
+ 
+
+  web-reverse_proxy:
+    image: $IMAGE_WEB_REVERSE_PROXY
+    depends_on:
+    - api-svc
+    ports:
+    - "8443:8443" # -> public Django
+    - "8444:8444" # -> public API
+    - "8501:8501" # -> admin Django
+    - "8502:8502" # -> full API
+
+  web-dev_console2:
+    image: $IMAGE_WEB_CONSOLE
+    command: kubernetes/deployments/start.sh
+    depends_on:
+    - api-svc
+    environment:
+    - ENVIRONMENT=production
+    - ALLOWED_HOSTS=$DJANGO_ALLOWED_HOSTS
+    - CONSOLE_SERVICE=$CONSOLE_SERVICE
+    - DJANGO_STATIC_HOST=$DJANGO_STATIC_HOST
+    - SECRET_KEY=$DJANGO_SECRET_KEY
+    - LEGACY_SALT=$DJANGO_LEGACY_SALT
+    - DATABASE_HOST=api-db
+    - DATABASE_NAME=django
+    - DATABASE_USER=django_caller
+    - DATABASE_PORT=3306
+    - DATABASE_PASSWORD=$API_DB_DJANGO_CALLER_PASSWORD
+    - CACHE_SERVICE_PASSWORD=$REDIS_SERVICE_PASSWORD
+    - EMAIL_HOST_USER=$EMAIL_HOST_USER
+    - EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD
+    - API_ADMIN_TOKEN=$API_ADMIN_DEVTOKEN
+    - RECAPTCHA_PUBLIC_KEY=$DJANGO_RECAPTCHA_PUBLIC_KEY
+    - RECAPTCHA_PRIVATE_KEY=$DJANGO_RECAPTCHA_PRIVATE_KEY
+    - MEDIA_URL=$WEB_MEDIASERVER_URL/img/
+    - API_URL=http://api-svc:8080/v1
+    - WHITELISTED_EMAIL_DOMAINS=$WHITELISTED_EMAIL_DOMAINS
+
+
+  web-mediaserver:
+    image: $IMAGE_WEB_MEDIASERVER
+    volumes:
+    - boticon_store:/usr/share/nginx/media/img/boticon:ro
+
+  redis:
+    image: redis:3.2-alpine
+    command: ["redis-server", "--requirepass", "$REDIS_SERVICE_PASSWORD"]
+
+

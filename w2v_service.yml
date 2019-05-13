@@ -1,0 +1,9 @@
+
+  ai-word2vec-{LANG_SUBST}:
+    image: $IMAGE_WORD2VEC
+    volumes:
+    - "./{WORD2VEC_FILE_SUBST}:/datasets/{WORD2VEC_FILE_SUBST}:ro"    
+    environment:
+    # Using the defaults but exposing them here while we're testing the service
+    - W2V_SERVER_PORT=9090
+    - W2V_VECTOR_FILE=/datasets/{WORD2VEC_FILE_SUBST}

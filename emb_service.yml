@@ -1,0 +1,22 @@
+
+  ai-entity-{LANG_SUBST}:
+    image: $IMAGE_API_ENTITY
+    depends_on:
+    - api-svc
+    environment:
+    - ERS_LANGUAGE={LANG_SUBST}
+
+  ai-embedding-{LANG_SUBST}:
+    image: $IMAGE_EMBEDDING
+    depends_on:
+    - api-svc
+    volumes:
+    - emb_store:/ai
+    environment:
+    - AI_LANGUAGE={LANG_SUBST}
+    - AI_TRAINING_ENABLED=1
+    - AI_CHAT_ENABLED=1
+    - API_BACKEND_STATUS_ENDPOINT=http://api-ctrl:8080/v1
+    - ER_SERVER_URL=http://ai-entity-{LANG_SUBST}:9095
+    - W2V_SERVER_URL={W2V_SERVER_URL}
+    - EMB_SERVER_PORT=9090
