@@ -9,6 +9,8 @@ You will need to have installed:
 1. Docker (https://runnable.com/docker/getting-started/, then check the instructions for your Operating System)
 2. Docker-Compose (https://docs.docker.com/compose/install/)
 
+For Mac and Windows users it is recommended to set the docker memory limit above 5GB.   
+
 # Getting Started
 1. Clone or Download the Repo to your local machine. 
 2. Open a terminal window and go to directory where you just downloaded the project (ex. ~/hutoma_system_launcher-master)
@@ -26,7 +28,7 @@ Enjoy!
 ## Running the Word2Vec service locally
 1. If you wish to run the Word2Vec service locally, set the `launch.sh`'s `USE_LOCAL_W2V` variable to TRUE (`USE_LOCAL_W2V=true`). Set it to FALSE to use the public service (this is the recommended default)
 
-## Creating other test users 
+## Customizing the test user 
 A convenience script is included to create a user without having to go through the registration process.
 1. Edit `create_test_user.sh` and change the `USER_EMAIL` variable to contain the email address you want to use. All remaining variables should just work with the existing defaults
 2. If no errors are shown during the execution of the script, you should have now a new user created
