@@ -30,7 +30,7 @@ Enjoy!
 A convenience script is included to create a user without having to go through the registration process.
 1. Edit `create_test_user.sh` and change the `USER_EMAIL` variable to contain the email address you want to use. All remaining variables should just work with the existing defaults
 2. If no errors are shown during the execution of the script, you should have now a new user created
-3. Navigate to `http://localhost:8443`, tell your browser to ignore the security warning due to the use of the self-signed certificate, and login with:
+3. Navigate to `https://localhost:8443`, tell your browser to ignore the security warning due to the use of the self-signed certificate, and login with:
     - username: (the email address you defined on step 1, or `hello@nowhere.com` if you haven't changed this)
     - password: `Pass@word1`
 
