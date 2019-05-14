@@ -1,5 +1,8 @@
 # Introduction 
-This is a set of files to support launching a simple, local version of the Hutoma system.
+Hu:toma AI is an open source stack designed to help you create compelling conversational interfaces with little effort and above industry accuracy. You can view an intro to the platform here: https://www.youtube.com/watch?v=SJB8PMWG71M
+
+To support launching a simple, local version of the Hutoma system check the following instructions. For comments, issues, suggestions please visit our community https://community.hutoma.ai.
+
 
 # Requirements
 You will need to have installed:
