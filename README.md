@@ -10,27 +10,29 @@ You will need to have installed:
 2. Docker-Compose (https://docs.docker.com/compose/install/)
 
 # Getting Started
-1. Determine if you want to use the public Word2Vec services, or run it locally (note that running it locally will require you to have an additional 20Gb of memory for the initialisation of the Word2Vec services in all languages)
-2. Update `launch.sh`'s `USE_LOCAL_W2V` variable to reflect the decision form 1 (`USE_LOCAL_W2V=false` to use the public service - recommended! - or `USE_LOCAL_W2V=true` to use the services locally).
-3. You can define which languages to use by changing the `languages_array` variable. If you make changes to this then you'll also need to update the `languages_w2v_files` variable to include the respective Word2Vec vector pickled files. Recommended to leave this as it is for now.
-4. Run `launch.sh` - this will download all the docker container images and run it through docker-compose
+1. Clone or Download the Repo to your local machine. 
+2. Open a terminal window and go to directory where you just downloaded the project (ex. ~/hutoma_system_launcher-master)
+3. Type `. launch.sh` to run the setup - this will download all the docker container images and run it through docker-compose. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster. 
+4. Verify step 3 is completed by navigating to `https://localhost:8443`. Tell your browser to ignore the security warning due to the use of the self-signed certificate. If you see the login form then you can proceed to step 5, otherwise wait a bit more.
+5. If the platform is up, go to a new terminal window and type `. create_test_user.sh` to create a test user
+6. Go back to `https://localhost:8443` and login with:
+    - username: `hello@nowhere.com`
+    - password: `Pass@word1`
 
-You will see all the logging spew on the console. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster.
-You can test whether the system is up or not by going to a browser and navigating to <http://localhost:8443>. It may take a little bit until the web console is fully available.
-
+Enjoy!
 
 # Additional setup
 
-## Creating a test user 
+## Running the Word2Vec service locally
+1. If you wish to run the Word2Vec service locally, set the `launch.sh`'s `USE_LOCAL_W2V` variable to TRUE (`USE_LOCAL_W2V=true`). Set it to FALSE to use the public service (this is the recommended default)
+
+## Creating other test users 
 A convenience script is included to create a user without having to go through the registration process.
 1. Edit `create_test_user.sh` and change the `USER_EMAIL` variable to contain the email address you want to use. All remaining variables should just work with the existing defaults
 2. If no errors are shown during the execution of the script, you should have now a new user created
-3. Navigate to `http://localhost:8443`, tell your browser to ignore the security warning due to the use of the self-signed certificate, and login with:
+3. Navigate to `https://localhost:8443`, tell your browser to ignore the security warning due to the use of the self-signed certificate, and login with:
     - username: (the email address you defined on step 1, or `hello@nowhere.com` if you haven't changed this)
     - password: `Pass@word1`
-
-## Enabling additional languages (optional)
-The only built-in language is English, which is always enabled by default. To support Spanish and Italian, you need to tell the system to turn the support on. A convenience script `enable_languages.sh` is included to make this process easy. You just need to run the script, and wait up to a minute, and the new languages will now be accepted by the system.
 
 ## Enabling new user registration and password resets
 If you want to enable the web console to support the creation of new users, you will need to add a few extra environment variables.
@@ -46,6 +48,9 @@ Additionally, you will need a SMTP2GO account (https://www.smtp2go.com/), and up
 EMAIL_HOST_USER=
 EMAIL_HOST_PASSWORD=
 ```
+## Enabling additional languages (optional)
+You can define which languages to use by changing the `languages_array` variable. If you make changes to this then you'll also need to update the `languages_w2v_files` variable to include the respective Word2Vec vector pickled files. Recommended to leave this as it is for now. The only built-in language is English, which is always enabled by default. To support Spanish and Italian, you need to tell the system to turn the support on. A convenience script `enable_languages.sh` is included to make this process easy. You just need to run the script, and wait up to a minute, and the new languages will now be accepted by the system.
+
 
 
 # FAQ
