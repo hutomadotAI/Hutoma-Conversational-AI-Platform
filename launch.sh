@@ -95,4 +95,4 @@ export DJANGO_RECAPTCHA_PRIVATE_KEY=
 
 
 
-docker-compose -p hutoma-oss up
+docker-compose -p hutomaoss up

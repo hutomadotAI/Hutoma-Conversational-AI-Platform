@@ -7,7 +7,7 @@ USER_DEV_ID='a2b9d970-521c-493d-86b1-8d756c85d226'
 USER_DEV_TOKEN='eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiJ9.eNqqVgry93FVsgJT8W5Brq5KOkrFpUlAkUSjJMsUS3MDXVMjw2RdE0vjFF0LsyRDXYsUc1OzZAvTFCMjM6VaAAAAAP__.fDY6_exr50JsiADlG8YAhrVS5nHQZCI6PvbXpt-yf_I'
 # Encrypted password for 'Pass@word1'
 USER_ENCRYPTED_PWD='pbkdf2_sha256$120000$DqgMqpg5CqYP$ilDHNbOjqm1IYxN4FOCZ6vJF2gMdBMKFNiiL3YO4gJ8='
-DB_IMAGE='hutoma-oss_api-db_1'
+DB_IMAGE='hutomaoss_api-db_1'
 
 
 docker exec -it $DB_IMAGE /usr/bin/mysql -h localhost -u$DB_USER -p$DB_PASSWORD -Dhutoma \
