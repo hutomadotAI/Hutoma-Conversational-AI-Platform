@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Whether to use locally built Docker images, or from the public registry
+USE_LOCAL_DOCKER_IMAGES=true
+
 # Define whether to use a local Word2Vec service or istead use the public one
 USE_LOCAL_W2V=false
 
@@ -54,16 +57,29 @@ done
 #
 # Container images
 #
-export IMAGE_API_DB='eu.gcr.io/hutoma-oss/core/db'
-export IMAGE_LOG_FLUENT='eu.gcr.io/hutoma-oss/core/fluent'
-export IMAGE_API_CTRL='eu.gcr.io/hutoma-oss/core/api-ctrl'
-export IMAGE_API_SVC='eu.gcr.io/hutoma-oss/core/api-svc'
-export IMAGE_API_ENTITY='eu.gcr.io/hutoma-oss/core/entity-rec'
-export IMAGE_EMBEDDING='eu.gcr.io/hutoma-oss/core/embedding'
-export IMAGE_WEB_REVERSE_PROXY='eu.gcr.io/hutoma-oss/core/reverse-proxy'
-export IMAGE_WEB_CONSOLE='eu.gcr.io/hutoma-oss/core/web-console'
-export IMAGE_WEB_MEDIASERVER='eu.gcr.io/hutoma-oss/core/web-media'
-export IMAGE_WORD2VEC='eu.gcr.io/hutoma-oss/core/word2vec'
+if $USE_LOCAL_DOCKER_IMAGES; then
+    export IMAGE_API_DB='hu_api-db'
+    export IMAGE_LOG_FLUENT='fluent/fluentd:v1.1.1-onbuild'
+    export IMAGE_API_CTRL='hu_api-controller'
+    export IMAGE_API_SVC='hu_api-core'
+    export IMAGE_API_ENTITY='hu_er'
+    export IMAGE_EMBEDDING='hu_qamatcher'
+    export IMAGE_WEB_REVERSE_PROXY='hu_reverse-proxy'
+    export IMAGE_WEB_CONSOLE='hu_web-console'
+    export IMAGE_WEB_MEDIASERVER='hu_media-server'
+    export IMAGE_WORD2VEC='hu_word2vec'
+else
+    export IMAGE_API_DB='eu.gcr.io/hutoma-oss/core/db'
+    export IMAGE_LOG_FLUENT='eu.gcr.io/hutoma-oss/core/fluent'
+    export IMAGE_API_CTRL='eu.gcr.io/hutoma-oss/core/api-ctrl'
+    export IMAGE_API_SVC='eu.gcr.io/hutoma-oss/core/api-svc'
+    export IMAGE_API_ENTITY='eu.gcr.io/hutoma-oss/core/entity-rec'
+    export IMAGE_EMBEDDING='eu.gcr.io/hutoma-oss/core/embedding'
+    export IMAGE_WEB_REVERSE_PROXY='eu.gcr.io/hutoma-oss/core/reverse-proxy'
+    export IMAGE_WEB_CONSOLE='eu.gcr.io/hutoma-oss/core/web-console'
+    export IMAGE_WEB_MEDIASERVER='eu.gcr.io/hutoma-oss/core/web-media'
+    export IMAGE_WORD2VEC='eu.gcr.io/hutoma-oss/core/word2vec'
+fi
 
 
 
