@@ -39,6 +39,8 @@ services:
     volumes:
     - api-svc_logs_store:/usr/local/tomcat/logs
     - boticon_store:/boticon
+    ports:
+    - "8001:8080"
     environment:
     - API_ENCODING_KEY="$API_ENCODING_KEY"
     - API_CONNECTION_STRING=jdbc:mysql://api-db:3306/hutoma?user=hutoma_caller&password=$API_DB_HUTOMA_CALLER_PASSWORD&zeroDateTimeBehavior=convertToNull
