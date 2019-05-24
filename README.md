@@ -1,6 +1,5 @@
-\ro to the platform here: https://www.youtube.com/watch?v=SJB8PMWG71M
-
-To support launching a simple, local version of the Hutoma system check the following instructions. For comments, issues, suggestions please visit our community https://community.hutoma.ai.
+# Open Source Conversational AI Platform
+Hu:toma AI is an open source platform designed to help you create compelling conversational interfaces with little effort and above industry accuracy. The platform includes a web console where to design complex interactions, an API Server, Logging and Analytics functionalities, NLP and Machine Learning algorithms and everything you might need to build a scalable Chatbot factory.  For comments, issues, suggestions please visit our community https://community.hutoma.ai.
 
 
 # Requirements
