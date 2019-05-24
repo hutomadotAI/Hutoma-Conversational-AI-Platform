@@ -15,7 +15,7 @@ You will need to have installed:
 - Docker (https://runnable.com/docker/getting-started/, then check the instructions for your Operating System)
 - Docker-Compose (https://docs.docker.com/compose/install/)
 - Java JDK 8 (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- Maven (https://maven.apache.org/download.cgi)
+- Maven (to install on MAC type 'brew install maven'; for Linux install type 'apt-get install maven')
 
 For Mac and Windows users it is recommended to set the docker memory limit above 5GB.   
 
@@ -23,7 +23,7 @@ For Mac and Windows users it is recommended to set the docker memory limit above
 1. Clone or Download the Repo to your local machine. 
 2. Open a terminal window and go to directory where you just downloaded the project (ex. ~/hutoma_system_launcher-master)
 3. Type `./clone_and_build.sh` to download all the source code, and build all components from source
-4. Type `. launch.sh` to run the setup - this will download all the docker container images and run it through docker-compose. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster. 
+4. Type `. launch.sh` to run the setup - by default this will run the local builds through docker-compose. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster. 
 5. Verify step 3 is completed by navigating to `https://localhost:8443`. Tell your browser to ignore the security warning due to the use of the self-signed certificate. If you see the login form then you can proceed to step 5, otherwise wait a bit more.
 6. If the platform is up, go to a new terminal window and type `. create_test_user.sh` to create a test user
 7. Go back to `https://localhost:8443` and login with:
