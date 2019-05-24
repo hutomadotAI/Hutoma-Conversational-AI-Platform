@@ -1,8 +1,14 @@
-# Introduction 
-Hu:toma AI is an open source stack designed to help you create compelling conversational interfaces with little effort and above industry accuracy. You can view an intro to the platform here: https://www.youtube.com/watch?v=SJB8PMWG71M
+# Open Source Conversational AI Platform
+Hu:toma AI is an open source platform designed to help you create compelling conversational interfaces with little effort and above industry accuracy. The platform includes a web console where to design complex interactions, an API Server, Logging and Analytics functionalities, NLP and Machine Learning algorithms and everything you might need to build a scalable Chatbot factory.  For comments, issues, suggestions please visit our community https://community.hutoma.ai.
 
-To support launching a simple, local version of the Hutoma system check the following instructions. For comments, issues, suggestions please visit our community https://community.hutoma.ai.
+### Demo
+A [demo](https://console.hutoma.ai/accounts/login) of the platform can be accessed from our [main website](https://www.hutoma.ai). . You can view an intro to the platform [here](https://www.youtube.com/watch?v=SJB8PMWG71M)
 
+### Platform Documentation 
+You can find some additional documentation about our platform [here](https://help.hutoma.ai). Check also this [brief intro video](https://www.youtube.com/watch?v=SJB8PMWG71M)
+
+### Questions and Help
+For anything else please [visit our community](https://community.hutoma.ai)
 
 # Requirements
 You will need to have installed:
@@ -55,8 +61,6 @@ EMAIL_HOST_PASSWORD=
 ```
 ## Enabling additional languages (optional)
 You can define which languages to use by changing the `languages_array` variable. If you make changes to this then you'll also need to update the `languages_w2v_files` variable to include the respective Word2Vec vector pickled files. Recommended to leave this as it is for now. The only built-in language is English, which is always enabled by default. To support Spanish and Italian, you need to tell the system to turn the support on. A convenience script `enable_languages.sh` is included to make this process easy. You just need to run the script, and wait up to a minute, and the new languages will now be accepted by the system.
-
-
 
 # FAQ
 
