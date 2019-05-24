@@ -1,6 +1,15 @@
 # Open Source Conversational AI Platform
 Hu:toma AI is an open source platform designed to help you create compelling conversational interfaces with little effort and above industry accuracy. The platform includes a web console where to design complex interactions, an API Server, Logging and Analytics functionalities, NLP and Machine Learning algorithms and everything you might need to build a scalable Chatbot factory.  For comments, issues, suggestions please visit our community https://community.hutoma.ai.
 
+### Demo
+A [demo](https://console.hutoma.ai/accounts/login) of the platform can be accessed from our [main website](https://www.hutoma.ai). You can view an intro to the platform [here](https://www.youtube.com/watch?v=SJB8PMWG71M)
+
+### Platform Documentation 
+You can find some additional documentation about our platform [here](https://help.hutoma.ai). 
+
+### Questions and Help
+For anything else please [visit our community](https://community.hutoma.ai)
+
 
 # Requirements
 You will need to have installed:
