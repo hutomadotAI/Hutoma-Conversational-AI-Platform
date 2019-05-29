@@ -20,7 +20,7 @@ For Mac and Windows users it is recommended to set the docker memory limit above
 # Getting Started
 1. Clone or Download the Repo to your local machine. 
 2. Open a terminal window and go to directory where you just downloaded the project (ex. ~/Hutoma-Conversational-AI-Platform)
-3. Type `. launch_local.sh` to run the setup - by default this will run the local builds through docker-compose. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster. 
+3. Type . launch.sh to run the setup - by default this will download the pre-build images from the public repository through docker-compose. The first time you run it will take a while as the database will be initialized, volumes created, etc. Subsequent runs should spin up faster.
 4. Verify step 3 is completed by navigating to `https://localhost:8443`. Tell your browser to ignore the security warning due to the use of the self-signed certificate. If you see the login form then you can proceed to step 5, otherwise wait a bit more.
 5. If the platform is up, go to a new terminal window and type `. create_test_user.sh` to create a test user
 6. Go back to `https://localhost:8443` and login with:
@@ -35,7 +35,7 @@ You can also build your own images directly from source code. To do that:
     * Maven (to install on MAC type 'brew install maven'; for Linux install type 'apt-get install maven')
 * Clone the repo
 * Type ./clone_and_build.sh to download all the source code, and build all components from source
-* Follow the Getting Started instructions above but use `. launch.sh` instead of `. launch_local.sh` in step 3 
+* Follow the Getting Started instructions above but use `. launch_local.sh` instead of `. launch.sh` in step 3 
 
 Enjoy!
 
