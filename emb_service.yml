@@ -12,6 +12,7 @@
     - api-svc
     volumes:
     - emb_store:/ai
+    - "./emb_logging.yml:/src/logging.yaml"
     environment:
     - AI_LANGUAGE={LANG_SUBST}
     - AI_TRAINING_ENABLED=1
@@ -20,3 +21,4 @@
     - ER_SERVER_URL=http://ai-entity-{LANG_SUBST}:9095
     - W2V_SERVER_URL={W2V_SERVER_URL}
     - EMB_SERVER_PORT=9090
+    - LOGGING_CONFIG_FILE=/src/logging.yaml
