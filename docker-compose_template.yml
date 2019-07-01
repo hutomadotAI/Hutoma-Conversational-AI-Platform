@@ -66,6 +66,8 @@ services:
     - "8444:8444" # -> public API
     - "8501:8501" # -> admin Django
     - "8502:8502" # -> full API
+    volumes:
+    - "./reverse_proxy/reverse_proxy_nginx.conf:/etc/nginx/nginx.conf"
 
   web-dev_console2:
     image: $IMAGE_WEB_CONSOLE
