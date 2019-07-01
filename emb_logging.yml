@@ -1,0 +1,27 @@
+version: 1
+
+root:
+  level: INFO
+  handlers: [fluent']
+
+formatters:
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: "(asctime) (levelname) (name) (message)"
+  fluent_fmt:
+    '()': fluent.handler.FluentRecordFormatter
+    exclude_attrs: ["args", "msg", "exc_info", "stack_info"] 
+
+filters:
+  emblogfilter:
+    '()': embedding.server.EmbLogFilter
+
+handlers:
+  fluent:
+    class: fluent.handler.FluentHandler
+    tag: ai-embedding-chat-v1
+    formatter: fluent_fmt
+    level: INFO
+    filters: [emblogfilter]
+    host: log-fluent
+    port: 24224
