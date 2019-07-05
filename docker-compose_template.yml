@@ -55,6 +55,7 @@ services:
     - API_RATELIMIT_CHAT_FREQUENCY=0.1
     - API_CONTROLLER_URL=http://api-ctrl:8080/v1
     - API_RNN_ENABLED=false
+    - API_LANGUAGES_AVAILABLE=$API_LANGUAGES_AVAILABLE
  
 
   web-reverse_proxy:
