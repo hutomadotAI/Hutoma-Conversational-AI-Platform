@@ -54,6 +54,7 @@ done
 # Required for launching the system without the console
 export API_ENCODING_KEY='L0562EMBfnLadKy57nxo9btyi3BEKm9m+DoNvGcfZa+DjHsXwTl+BwCE4NeKEAagfkhYBFvhvJoAgtugSsQOfw=='
 export API_DB_HUTOMA_CALLER_PASSWORD='%3EYR%22khuN*.gF)V4%23'
+export API_LANGUAGES_AVAILABLE=en,es,it
 
 # Required only by the console
 export API_DB_DJANGO_CALLER_PASSWORD='L#B7d*8S3Dbv3'
