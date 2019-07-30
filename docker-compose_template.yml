@@ -6,6 +6,7 @@ volumes:
   boticon_store:
   log_fluent_store:
   emb_store:
+  kb_store:
 
 services:
 
@@ -73,6 +74,8 @@ services:
   web-dev_console2:
     image: $IMAGE_WEB_CONSOLE
     command: kubernetes/deployments/start.sh
+    volumes:
+    - kb_store:/kb
     depends_on:
     - api-svc
     environment:
