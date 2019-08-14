@@ -47,8 +47,8 @@ services:
     - API_CONNECTION_STRING=jdbc:mysql://api-db:3306/hutoma?user=hutoma_caller&password=$API_DB_HUTOMA_CALLER_PASSWORD&zeroDateTimeBehavior=convertToNull
     - API_LOGGING_FLUENT_HOST=log-fluent
     - API_LOGGING_FLUENT_PORT=24224
-    - API_ENTITY_RECOGNIZER_URL=http://api-entity:9095/ner
-    - API_FIND_ENTITY_URL=http://api-entity:9095/findentities
+    - API_ENTITY_RECOGNIZER_URL=http://ai-entity-[lang]:9095/ner
+    - API_FIND_ENTITY_URL=http://ai-entity-[lang]:9095/findentities
     - API_FB_APP_ID=$FACEBOOK_APP_ID
     - API_FB_APP_SECRET=$FACEBOOK_APP_SECRET
     - API_ANALYTICS_ES_URLS=http://log-es:9200
