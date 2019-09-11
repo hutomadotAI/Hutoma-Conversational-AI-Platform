@@ -1,0 +1,27 @@
+version: 1
+
+root:
+  level: INFO
+  handlers: ['fluent']
+
+formatters:
+  json:
+    class: pythonjsonlogger.jsonlogger.JsonFormatter
+    format: "(asctime) (levelname) (name) (message)"
+  fluent_fmt:
+    '()': fluent.handler.FluentRecordFormatter
+    exclude_attrs: ["args", "msg", "exc_info", "stack_info"] 
+
+filters:
+  d2clogfilter:
+    '()': doc2chat.server.D2cLogFilter
+
+handlers:
+  fluent:
+    class: fluent.handler.FluentHandler
+    tag: ai-doc2chat-chat-v1
+    formatter: fluent_fmt
+    level: INFO
+    filters: [d2clogfilter]
+    host: log-fluent
+    port: 24224

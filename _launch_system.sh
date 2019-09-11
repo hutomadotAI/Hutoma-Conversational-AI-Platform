@@ -3,6 +3,9 @@
 # Define whether to use a local Word2Vec service or istead use the public one
 USE_LOCAL_W2V=false
 
+# Whether the Doc2Chat backend or not
+USE_DOC2CHAT="${USE_DOC2CHAT:=false}"
+
 # Define which languages to support by the system
 declare -a languages_array=("en" "es" "it")
 # Define the Word2Vec files to use for each language
@@ -16,9 +19,6 @@ get_w2vfile_for_lang() {
 
 # Delete the docker compose file since we're going to re-generate it
 DOCKER_COMPOSE="docker-compose.yml"
-if test -f "$DOCKER_COMPOSE" ]; then
-    rm $DOCKER_COMPOSE
-fi
 
 cat docker-compose_template.yml > docker-compose.yml
 
@@ -48,6 +48,10 @@ do
     fi
 
 done
+
+if $USE_DOC2CHAT; then
+    cat d2c_service.yml >> docker-compose.yml
+fi
 
 
 
