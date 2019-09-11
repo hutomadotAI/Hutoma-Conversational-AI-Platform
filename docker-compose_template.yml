@@ -32,6 +32,9 @@ services:
     - API_LOGGING_FLUENT_HOST=log-fluent
     - API_LOGGING_FLUENT_PORT=24224
     - API_RNN_ENABLED=false
+    - JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006"
+    ports:
+    - "5006:5006"
 
   api-svc:
     image: $IMAGE_API_SVC
@@ -42,6 +45,7 @@ services:
     - boticon_store:/boticon
     ports:
     - "8001:8080"
+    - "5005:5005"
     environment:
     - API_ENCODING_KEY="$API_ENCODING_KEY"
     - API_CONNECTION_STRING=jdbc:mysql://api-db:3306/hutoma?user=hutoma_caller&password=$API_DB_HUTOMA_CALLER_PASSWORD&zeroDateTimeBehavior=convertToNull
@@ -57,6 +61,7 @@ services:
     - API_CONTROLLER_URL=http://api-ctrl:8080/v1
     - API_RNN_ENABLED=false
     - API_LANGUAGES_AVAILABLE=$API_LANGUAGES_AVAILABLE
+    - JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
  
 
   web-reverse_proxy:

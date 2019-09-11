@@ -10,5 +10,6 @@ export IMAGE_WEB_REVERSE_PROXY='eu.gcr.io/hutoma-oss/core/reverse-proxy:latest'
 export IMAGE_WEB_CONSOLE='eu.gcr.io/hutoma-oss/core/web-console:latest'
 export IMAGE_WEB_MEDIASERVER='eu.gcr.io/hutoma-oss/core/web-media:latest'
 export IMAGE_WORD2VEC='eu.gcr.io/hutoma-oss/core/word2vec:latest'
+export IMAGE_DOC2CHAT='eu.gcr.io/hutoma-oss/core/doc2chat/doc2chat:latest'
 
 ./_launch_system.sh

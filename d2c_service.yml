@@ -1,0 +1,23 @@
+
+
+  ai-d2c-service:
+    image: $IMAGE_DOC2CHAT
+    depends_on:
+    - api-svc
+    volumes:
+    - emb_store:/ai
+    - ./d2c_logging.yml:/src/logging.yaml
+    - kb_store:/kb
+    environment:
+    - AI_LANGUAGE=en
+    - AI_TRAINING_ENABLED=1
+    - AI_CHAT_ENABLED=1
+    - D2C_SEARCH_LEVEL=qa
+    - API_BACKEND_STATUS_ENDPOINT=http://api-ctrl:8080/v1
+    - D2C_BASE_SOLR_URL=http://doc2chat.hutoma.ai:8983/solr
+    - D2C_NQ_URL=http://doc2chat.hutoma.ai:8099
+    - D2C_FILE_SHARE=/kb
+    - D2C_SERVER_PORT=9090
+    - D2C_INDEXING_POLL=2
+    - LOGGING_CONFIG_FILE=/src/logging.yaml
+

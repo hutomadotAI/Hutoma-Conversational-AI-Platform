@@ -13,7 +13,6 @@
     volumes:
     - emb_store:/ai
     - "./emb_logging.yml:/src/logging.yaml"
-    - kb_store:/kb
     environment:
     - AI_LANGUAGE={LANG_SUBST}
     - AI_TRAINING_ENABLED=1
